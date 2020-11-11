@@ -14,24 +14,22 @@ import subprocess
 def export_pdf(token, argvs):
     """
     Note:
-        argvs[0] is name of this file (rise2pdf.py)
-        argvs[1] is resolution you set
-        argvs[2] is the name of your notebook without extension
+        argvs[0] is file name
     """
 
-    command = ('`npm bin`/decktape rise -s ' + str(argvs[1])
+    command = ('`npm bin`/decktape rise -s ' + str(argvs[2])
                + ' http://localhost:8888/notebooks/'
-               + str(argvs[2])
+               + str(argvs[3])
                + '.ipynb?token='
-               + token + ' ./' + str(argvs[2]) + '.pdf')
+               + token + ' ./' + str(argvs[3]) + '.pdf')
 
     os.system(command)
 
     # remove node module
     os.system('rm -rf node_modules package-lock.json')
 
-if __name__ == '__main__':
-    
+def run():
+
     if os.path.exists('./node_modules/') is False:
         os.system('npm install decktape')
 
@@ -45,5 +43,5 @@ if __name__ == '__main__':
     print(f'convert {notebook} to pdf file...')
 
     argvs = sys.argv
-    export_pdf(notebook, argvs)
+    print(argvs)
 
