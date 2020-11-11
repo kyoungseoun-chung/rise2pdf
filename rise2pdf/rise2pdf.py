@@ -14,14 +14,16 @@ import subprocess
 def export_pdf(token, argvs):
     """
     Note:
-        argvs[0] is file name
+        argvs[0] is name of this file (rise2pdf.py)
+        argvs[1] is resolution you set
+        argvs[2] is the name of your notebook without extension
     """
 
-    command = ('`npm bin`/decktape rise -s ' + str(argvs[2])
+    command = ('`npm bin`/decktape rise -s ' + str(argvs[1])
                + ' http://localhost:8888/notebooks/'
-               + str(argvs[3])
+               + str(argvs[2])
                + '.ipynb?token='
-               + token + ' ./' + str(argvs[3]) + '.pdf')
+               + token + ' ./' + str(argvs[2]) + '.pdf')
 
     os.system(command)
 
@@ -39,9 +41,15 @@ def run():
 
     notebook = notebook_list.split('token=', 1)[1].split()[0]
 
+    argvs = sys.argv
+
+    print('')
+    print('==================================================================')
     print('rise2pdf')
     print(f'convert {notebook} to pdf file...')
+    print(f'output resolution: {argvs[1]}')
+    print('==================================================================')
+    print('')
 
-    argvs = sys.argv
-    print(argvs)
+    export_pdf(notebook, argvs)
 

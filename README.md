@@ -33,4 +33,4 @@ This script will detect token of your notebook using following command
 ```
 
 Then take only top-most listed notebook as target.
-Therefore, make sure you have only one active notebook in your local server or make your target slide at the top-most position in the list.
+Therefore, make sure you have only one active notebook in your local server or target notebook at the top-most position in the list.
